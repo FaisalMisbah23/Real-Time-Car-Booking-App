@@ -1,4 +1,4 @@
-import OnBoardingScreen from "@/screens/onboarding.screen";
+import OnBoardingScreen from "@/screens/onboarding/onboarding.screen";
 import { StyleSheet } from "react-native";
 import { View } from "react-native";
 export default function index() {

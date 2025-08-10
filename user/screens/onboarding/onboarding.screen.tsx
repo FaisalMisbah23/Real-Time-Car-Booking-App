@@ -2,7 +2,7 @@ import { View, Image, ImageBackground, Text, TouchableOpacity } from 'react-nati
 import React from 'react'
 import color from '@/themes/app.colors'
 import Swiper from 'react-native-swiper'
-import { styles } from "./styles"
+import { styles } from "../styles"
 import { slides } from '@/configs/constants'
 import Images from '@/utils/images'
 import { BackArrow } from '@/utils/icons'
@@ -30,7 +30,7 @@ export default function onBoardingScreen() {
                                 <Text style={styles.description}>{slide.description} </Text>
                                 <TouchableOpacity
                                     style={styles.backArrow}
-                                    onPress={() => router.push("/(router)/login")}>
+                                    onPress={() => router.push("/(routes)/login")}>
                                     <BackArrow />
                                 </TouchableOpacity>
                             </ImageBackground>

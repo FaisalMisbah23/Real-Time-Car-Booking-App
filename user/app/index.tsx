@@ -3,7 +3,6 @@ import { Redirect } from "expo-router";
 
 export default function index() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  console.log("🚀 ~ index ~ isLoggedIn:", isLoggedIn)
   return (
     <>
       {isLoggedIn ? (
