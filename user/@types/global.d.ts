@@ -4,4 +4,16 @@ type ButtonProps = {
   width?: DimensionValue;
   backgroundColor?: string;
   textColor?: string;
+  disabled?: boolean;
+};
+
+type UserType = {
+  id: string;
+  name: string;
+  phone_Number: string;
+  email: string;
+  ratings?: Number;
+  totalRides?: Number;
+  createdAt: Date;
+  updatedAt: Date;
 };

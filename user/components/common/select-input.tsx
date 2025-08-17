@@ -17,8 +17,8 @@ interface InputProps {
 }
 
 export default function SelectInput({
-    title,
     placeholder,
+    title,
     items,
     value,
     warning,
@@ -31,13 +31,15 @@ export default function SelectInput({
             <RNPickerSelect
                 onValueChange={onValueChange}
                 items={items}
-                placeholder={{ label: value }}
+                placeholder={{ label: placeholder, value: null }}
                 style={{
                     inputIOS: {
                         ...styles.input,
                         backgroundColor: color.lightGray,
                         borderColor: colors.border,
                         height: windowHeight(39),
+                        color: "#000",
+
                     },
                     inputAndroid: {
                         ...styles.input,
@@ -48,6 +50,7 @@ export default function SelectInput({
                     },
                 }}
                 value={value}
+
             />
             {showWarning && <Text style={[styles.warning]}>{warning}</Text>}
         </View>

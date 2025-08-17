@@ -5,11 +5,17 @@ import { external } from "@/styles/external.style";
 import color from "@/themes/app.colors";
 import styles from "@/screens/login/style";
 import SelectInput from "../common/select-input";
-import { useState } from "react";
 import { countryItems } from "@/configs/country-list";
 
-export default function PhoneNumberInput({ width }: any) {
-  const [countryCode, setCountryCode] = useState("+92");
+interface Props {
+  width?: number
+  phoneNumber: string
+  countryCode: string
+  setPhoneNumber: (phoneNumber: string) => void
+  setCountryCode: (countryCode: string) => void
+}
+export default function PhoneNumberInput({ width, phoneNumber, countryCode, setPhoneNumber, setCountryCode
+}: Props) {
 
   return (
     <View>
@@ -59,6 +65,8 @@ export default function PhoneNumberInput({ width }: any) {
             placeholder={"Enter your number"}
             keyboardType="numeric"
             maxLength={10}
+            value={phoneNumber}
+            onChangeText={setPhoneNumber}
           />
         </View>
       </View>

@@ -2,7 +2,7 @@ import SignInText from "@/components/login/signin.text";
 import { windowHeight } from "@/themes/app.constant";
 import AuthContainer from "@/utils/container/auth-container";
 import { Text, TouchableOpacity, View } from "react-native";
-import { style } from "./styles";
+import { style } from "../verification/styles";
 import color from "@/themes/app.colors";
 import OTPTextInput from "react-native-otp-textinput";
 import Button from "@/components/common/button";
@@ -10,46 +10,36 @@ import { router, useLocalSearchParams } from "expo-router";
 import { external } from "@/styles/external.style";
 import { commonStyles } from "@/styles/common.style";
 import { useState } from "react";
-import { useToast } from "react-native-toast-notifications";
 import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Toast } from "react-native-toast-notifications";
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
-export default function OtpVerificationScreen() {
 
+export default function EmailVerificationScreen() {
     const [otp, setOtp] = useState("");
-    const { phone_number } = useLocalSearchParams();
     const [loading, setLoading] = useState(false);
 
-    const toast = useToast();
+    const { user } = useLocalSearchParams() as any;
+    const parsedUser = JSON.parse(user)
 
     const handleSubmit = async () => {
-        if (otp === "") {
-            toast.show("Please fill all the fields", {
-                placement: 'bottom'
-            })
-        } else {
-            setLoading(true)
-            await axios.post(`${process.env.EXPO_PUBLIC_SERVER_URL}/verify-otp`, { phone_number, otp }).then(async (res) => {
-                setLoading(false)
-                if (res.data.user.email === null) {
-                    router.push({
-                        pathname: "/(routes)/registration",
-                        params: { user: JSON.stringify(res.data.user) }
-                    })
-                } else {
-                    await AsyncStorage.setItem("accessToken", res.data.accessToken);
-                    router.push("/(tabs)/home")
-                }
-                toast.show("Account verified!")
-            }).catch((error) => {
-                setLoading(false)
-                toast.show("Something went wrong! please re check you otp!", {
-                    type: "danger",
-                    placement: "bottom"
-                })
-            })
+        setLoading(true)
+        const otpNumbers = `${otp}`;
+        await axios.put(`${process.env.EXPO_PUBLIC_SERVER_URL}/email-otp-verify`, {
+            token: parsedUser.token,
+            otp: otpNumbers
+        }).then(async (res) => {
+            setLoading(false)
+            await AsyncStorage.setItem("accessToken", res.data.accessToken);
+            router.push("/(tabs)/home");
+        }).catch((error) => {
+            setLoading(false)
+            Toast.show(error.message, {
+                placement: "bottom",
+                type: "danger"
 
-        }
+            })
+        })
     }
 
     return (
@@ -60,8 +50,8 @@ export default function OtpVerificationScreen() {
                 <View>
                     <SignInText
 
-                        title="OTP Verification"
-                        subtitle="Check your phone number for the otp!" />
+                        title="Email Verification"
+                        subtitle="Check your email address for the otp!" />
                     <OTPTextInput
                         handleTextChange={(code) => setOtp(code)}
                         inputCount={4}

@@ -1,4 +1,5 @@
 export const countryItems = [
+  { label: "+92", value: "92" },
   { label: "+93", value: "93" },
   { label: "+355", value: "355" },
   { label: "+213", value: "213" },
@@ -12,6 +13,7 @@ export const countryItems = [
   { label: "+1-242", value: "1-242" },
   { label: "+973", value: "973" },
   { label: "+880", value: "880" },
+  { label: "+1-246", value: "1-246" },
   { label: "+1-246", value: "1-246" },
   { label: "+375", value: "375" },
   { label: "+32", value: "32" },
@@ -82,7 +84,6 @@ export const countryItems = [
   { label: "+1-876", value: "1-876" },
   { label: "+81", value: "81" },
   { label: "+962", value: "962" },
-  { label: "+7", value: "7" },
   { label: "+254", value: "254" },
   { label: "+686", value: "686" },
   { label: "+965", value: "965" },
@@ -126,7 +127,6 @@ export const countryItems = [
   { label: "+389", value: "389" },
   { label: "+47", value: "47" },
   { label: "+968", value: "968" },
-  { label: "+92", value: "92" },
   { label: "+680", value: "680" },
   { label: "+970", value: "970" },
   { label: "+507", value: "507" },
@@ -163,7 +163,6 @@ export const countryItems = [
   { label: "+94", value: "94" },
   { label: "+249", value: "249" },
   { label: "+597", value: "597" },
-  { label: "+268", value: "268" },
   { label: "+46", value: "46" },
   { label: "+41", value: "41" },
   { label: "+963", value: "963" },
@@ -191,5 +190,5 @@ export const countryItems = [
   { label: "+84", value: "84" },
   { label: "+967", value: "967" },
   { label: "+260", value: "260" },
-  { label: "+263", value: "263" },
+  { label: "+263", value: "263" }
 ];

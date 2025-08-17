@@ -1,0 +1,33 @@
+{
+  "Express Async Function": {
+    "prefix": "catchasync",
+    "body": [
+      "export const ${1:funcName} = async (",
+      "  req: Request,",
+      "  res: Response,",
+      "  next: NextFunction",
+      ") => {",
+      "  try {",
+      "    res.status(201).json({",
+      "      success: true,",
+      "    });",
+      "  } catch (error: any) {",
+      "    console.log(error);",
+      "    res.status(400).json({",
+      "      success: false,",
+      "    });",
+      "  }",
+      "};"
+    ],
+    "description": "Express async function with try-catch and success/failure response."
+  },
+  "Guard Clause with ErrorHandler": {
+    "prefix": "guard",
+    "body": [
+      "if (!${1:property}) {",
+      "  return next(new ErrorHandler(\"${2:message}\", ${3:400}));",
+      "}"
+    ],
+    "description": "Guard clause that throws an error using ErrorHandler if a property is missing"
+  }
+}
