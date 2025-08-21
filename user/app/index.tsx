@@ -19,6 +19,7 @@ export default function index() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true
     const getData = async () => {
       try {
         const accessToken = await AsyncStorage.getItem("accessToken");
@@ -28,10 +29,15 @@ export default function index() {
       } catch (error) {
         console.log("Failed to retrieve access token from async storage", error);
       } finally {
-        setIsLoading(false);
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
     };
     getData();
+    return () => {
+      isMounted = false
+    }
   }, []);
 
   if (isLoading) {
